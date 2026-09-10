@@ -1,7 +1,7 @@
 # src/input/core.cr
 module Term::Input
-  alias Token = Term::Mux::Token
-  alias Disposition = Term::Mux::Disposition
+  alias Token = Term::Seq::Token
+  alias Disposition = Term::Seq::Disposition
 
   record CellSize,
     w : Int32,

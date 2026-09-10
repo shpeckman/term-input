@@ -17,14 +17,14 @@ class EventProbe
   getter unknowns : Array(Term::Input::Unknown::Event)  = [] of Term::Input::Unknown::Event
   getter pastes   : Array(String)                       = [] of String
 
-  getter filter : Term::Mux::InputFilter
+  getter filter : Term::Seq::InputFilter
   getter input  : Term::Input::Events
 
   def initialize(drag_threshold : Int32      = Term::Input::Events::DEFAULT_DRAG_THRESHOLD,
                  click_interval : Time::Span = Term::Input::Events::DEFAULT_CLICK_INTERVAL,
                  click_slop     : Int32      = Term::Input::Events::DEFAULT_CLICK_SLOP,
                  escape_ticks   : Int32      = 2)
-    @filter = Term::Mux::InputFilter.new(escape_ticks)
+    @filter = Term::Seq::InputFilter.new(escape_ticks)
     @input  = Term::Input::Events.new(@filter, drag_threshold, click_interval, click_slop)
 
     @input.on_event { |event| @events << event }

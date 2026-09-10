@@ -42,7 +42,7 @@ class Term::Input::Events
   @click_time  = Time.instant
   @click_count = 0
 
-  def initialize(@filter         : Term::Mux::InputFilter,
+  def initialize(@filter         : Term::Seq::InputFilter,
                  @drag_threshold : Int32      = DEFAULT_DRAG_THRESHOLD,
                  @click_interval : Time::Span = DEFAULT_CLICK_INTERVAL,
                  @click_slop     : Int32      = DEFAULT_CLICK_SLOP)

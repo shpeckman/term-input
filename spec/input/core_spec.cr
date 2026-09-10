@@ -38,8 +38,8 @@ end
 describe "Term::Input.plain_params?" do
   it "accepts digits and delimiters" do
     accepted = [] of Bool
-    filter   = Term::Mux::InputFilter.new
-    filter.on_csi('u') { |t| accepted << Term::Input.plain_params?(t); Term::Mux::Disposition.pass }
+    filter   = Term::Seq::InputFilter.new
+    filter.on_csi('u') { |t| accepted << Term::Input.plain_params?(t); Term::Seq::Disposition.pass }
     filter.feed("\e[97:65;2:3u".to_slice)
 
     report("\\e[97:65;2:3u", [true], accepted)
@@ -48,8 +48,8 @@ describe "Term::Input.plain_params?" do
 
   it "rejects a private marker byte inside the parameters" do
     accepted = [] of Bool
-    filter   = Term::Mux::InputFilter.new
-    filter.on_csi('u') { |t| accepted << Term::Input.plain_params?(t); Term::Mux::Disposition.pass }
+    filter   = Term::Seq::InputFilter.new
+    filter.on_csi('u') { |t| accepted << Term::Input.plain_params?(t); Term::Seq::Disposition.pass }
     filter.feed("\e[9<7u".to_slice)
 
     report("\\e[9<7u", [false], accepted)
@@ -58,8 +58,8 @@ describe "Term::Input.plain_params?" do
 
   it "skips the private marker" do
     accepted = [] of Bool
-    filter   = Term::Mux::InputFilter.new
-    filter.on_csi('n', marker: '?') { |t| accepted << Term::Input.plain_params?(t); Term::Mux::Disposition.pass }
+    filter   = Term::Seq::InputFilter.new
+    filter.on_csi('n', marker: '?') { |t| accepted << Term::Input.plain_params?(t); Term::Seq::Disposition.pass }
     filter.feed("\e[?997;1n".to_slice)
 
     report("\\e[?997;1n", [true], accepted)

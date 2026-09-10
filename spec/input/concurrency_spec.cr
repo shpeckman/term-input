@@ -9,7 +9,7 @@ describe "Term::Input::Events under a middleman" do
   it "serialises producers running in separate isolated contexts" do
     count  = Atomic(Int32).new(0)
     mutex  = Mutex.new
-    filter = Term::Mux::InputFilter.new
+    filter = Term::Seq::InputFilter.new
     events = Term::Input::Events.new(filter)
     events.on_key { count.add(1) }
 
@@ -34,7 +34,7 @@ describe "Term::Input::Events under a middleman" do
   it "keeps sequence assembly intact across chunk splits" do
     seen   = Atomic(Int32).new(0)
     mutex  = Mutex.new
-    filter = Term::Mux::InputFilter.new
+    filter = Term::Seq::InputFilter.new
     events = Term::Input::Events.new(filter)
     events.on_mouse { seen.add(1) }
 
@@ -62,7 +62,7 @@ describe "Term::Input::Events under a middleman" do
   it "assembles a paste fed from an isolated context" do
     result = Channel(Array(String)).new
     pastes = [] of String
-    filter = Term::Mux::InputFilter.new
+    filter = Term::Seq::InputFilter.new
     events = Term::Input::Events.new(filter)
     events.on_paste { |content| pastes << content }
 

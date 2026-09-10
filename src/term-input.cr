@@ -1,5 +1,5 @@
 # src/term-input.cr
-require "term-mux"
+require "term-seq/filter"
 require "./input/core"
 require "./input/keyboard"
 require "./input/mouse"

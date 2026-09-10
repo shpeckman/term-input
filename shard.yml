@@ -1,6 +1,6 @@
 # shard.yml
 name: term-input
-version: 0.3.0
+version: 0.4.0
 
 authors:
   - shpeckman <geelenrobin@proton.me>
@@ -10,5 +10,5 @@ crystal: '>= 1.21.0'
 license: MIT
 
 dependencies:
-  term-mux:
-    github: shpeckman/term-mux
+  term-seq:
+    github: shpeckman/term-seq

@@ -80,7 +80,7 @@ describe Term::Input::Events do
       first  = [] of Term::Input::Event
       second = [] of Term::Input::Event
 
-      filter = Term::Mux::InputFilter.new
+      filter = Term::Seq::InputFilter.new
       events = Term::Input::Events.new(filter)
       events.on_event { |e| first << e }
       events.on_event { |e| second << e }
